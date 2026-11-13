@@ -1,4 +1,4 @@
-# novel-revision-studio
+# Kagerou-Novel（小説 推敲・拡張スタジオ）
 
 長編小説の推敲・拡張を、同じ基準で1話ずつ順に進めるための枠組み。Claude Code での運用を前提とする。
 
