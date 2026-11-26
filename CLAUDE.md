@@ -10,7 +10,7 @@
 1. `core/WORKFLOW.md` — ベースプロンプト（手順・相談ゲート・禁止事項）
 2. `core/standards/` — drama / style / consistency / web-format
 3. active 作品の `WORK.md`
-4. active 作品の `bible/` 全ファイルと `PROGRESS.md`
+4. active 作品の `bible/` 全ファイルと `PROGRESS.md`（**`bible/period.md`＝時代考証は、設計書・本文・Notion 見直しのたびに必ず照らす**）
 
 ## 優先順位
 ユーザーの当該セッションでの指示 ＞ `works/<slug>/WORK.md` ＞ `works/<slug>/bible/*` ＞ `core/standards/*` ＞ `core/WORKFLOW.md` の既定値
@@ -29,6 +29,11 @@ python3 core/scripts/lint.py works/youen-no-fujigimi/drafts/ep001.md --work work
 python3 core/scripts/lint.py --source --work works/youen-no-fujigimi works/youen-no-fujigimi/source/ep*.md
 python3 core/scripts/new_work.py <slug>
 ```
+
+## 時代考証（2026-11-26 ユーザー指示）
+- 時代に合わない物・語・現象（江戸期の船型、後世の産物、海流・季節風の向きの誤りなど）を書かない
+- `lint.py` は作品の `lint.json` の `anachronisms` を1回でも ERROR、`period_watch` を WARN にする。根拠と代替は `bible/period.md`
+- 新しい誤りを見つけたら、`bible/period.md` と `lint.json` の両方に足す。既存の話にも同じ誤りがないか grep して直す
 
 ## 禁止
 - `works/*/source/` の編集（原文は不変）

@@ -14,6 +14,8 @@
   narration_patterns: {正規表現: 上限} 総括ナレーションなどの癖
   info_words: [...]                    数だけ報告する語（口癖・語尾）
   repeat_ngram: {n: 長さ, min: 回数}   反復フレーズの検出
+  anachronisms: {語: "理由→代替"}      時代に合わない語。1回でも ERROR（時代考証）
+  period_watch: {語: "確認の観点"}     時代考証で要確認の語。出たら WARN（文脈で判断）
 """
 import argparse
 import json
@@ -90,6 +92,16 @@ def main():
             c = flat.count(w)
             if c > mx:
                 errs.append(f"「{w}」{c}回（上限 {mx}）")
+
+        for w, why in cfg.get("anachronisms", {}).items():
+            c = flat.count(w)
+            if c:
+                errs.append(f"時代考証「{w}」{c}回：{why}")
+
+        for w, why in cfg.get("period_watch", {}).items():
+            c = flat.count(w)
+            if c:
+                warns.append(f"時代考証・要確認「{w}」{c}回：{why}")
 
         for pat, mx in cfg.get("narration_patterns", {}).items():
             c = len(re.findall(pat, body, flags=re.M))

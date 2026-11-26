@@ -59,6 +59,7 @@ Step1 読む → Step2 設計書 → [相談ゲート] → Step3 本文 → Step
 - `bible/ledger.md` の未回収の伏線・負債
 - `bible/master-plan.md` の当該話の割り当て
 - 関連する `notes/`（原ログ内の考証・分析）
+- 作品に時代考証の台帳（`bible/period.md` など）があれば、当該話に出る船・海・産物・通貨・食・年表の行
 
 #### Step2 設計書 `plans/epNNN.md`
 `core/templates/plan.md` の書式で書く。最低限、次を決める。
@@ -83,8 +84,9 @@ WORK.md の `review_mode` が `plan` のときは、相談事項がなくても�
 
 #### Step4 監査 `reviews/epNNN.md`
 1. `python3 core/scripts/lint.py works/<slug>/drafts/epNNN.md --work works/<slug>` を実行し、結果を貼る。ERROR が残っている限り完了にしない
-2. `core/templates/review.md` のチェックリストを、本文の該当箇所を引用しながら埋める（「問題なし」だけの記入は不可）
-3. 不合格の項目は本文を直し、1からやり直す
+2. lint の「時代考証」ERROR を 0 にし、WARN の語は文脈を確かめる。原文から引き継いだ物・語も時代に合うか照らす
+3. `core/templates/review.md` のチェックリストを、本文の該当箇所を引用しながら埋める（「問題なし」だけの記入は不可）
+4. 不合格の項目は本文を直し、1からやり直す
 
 #### Step5 台帳更新
 - `bible/canon.md`：この話で変わった年齢・地位・呼称・関係・生死
